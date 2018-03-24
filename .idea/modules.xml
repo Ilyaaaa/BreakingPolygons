@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BreakingPolygons.iml" filepath="$PROJECT_DIR$/.idea/BreakingPolygons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BreakingPolygons.iml" filepath="$PROJECT_DIR$/BreakingPolygons.iml" />
     </modules>
   </component>
 </project>

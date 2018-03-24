@@ -1,14 +1,13 @@
 package sample;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class Controller {
     public AnchorPane pane;
 
-    private  CreatePoligon createPoligon;
+    private CreatePolygon createPoligon;
     public Controller(){
-        this.createPoligon = new CreatePoligon(this);
+        this.createPoligon = new CreatePolygon(this);
     }
 
     public void breakPolygon(){

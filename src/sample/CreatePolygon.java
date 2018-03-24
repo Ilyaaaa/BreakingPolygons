@@ -3,9 +3,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
-public class CreatePoligon {
+public class CreatePolygon {
     private Controller controller;
-    public CreatePoligon(Controller controller){
+    public CreatePolygon(Controller controller){
         this.controller = controller;
     }
 
