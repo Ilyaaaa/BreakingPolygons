@@ -5,12 +5,13 @@ import javafx.scene.layout.AnchorPane;
 public class Controller {
     public AnchorPane pane;
 
-    private CreatePolygon createPoligon;
+    private PolygonCreator polygonCreator;
     public Controller(){
-        this.createPoligon = new CreatePolygon(this);
+        polygonCreator = new PolygonCreator(this);
     }
 
     public void breakPolygon(){
-        createPoligon.CreateP();
+        polygonCreator.createPolygon();
+        polygonCreator.breakPolygon();
     }
 }
