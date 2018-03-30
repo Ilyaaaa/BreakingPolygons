@@ -37,50 +37,6 @@ public class PolygonCreator {
     }
 
     public void breakPolygon() {
-//        for (int i = 0; i < points.size(); i++){
-//            Point p0;
-//            if (i == 0) p0 = points.get(points.size() - 1);
-//            else p0 = points.get(i - 1);
-//            Point p1 = points.get(i);
-//            Point p2;
-//            if (i == points.size() - 1) p2 = points.get(0);
-//            else p2 = points.get(i + 1);
-//
-//            Point2D midPoint = p0.midpoint(p2);
-//            double secondX = p1.getX();
-//            double secondY = p1.getY();
-//
-//            int xCounter = 0;
-//            if (secondX > midPoint.getX()) xCounter = -1;
-//            else if (secondX < midPoint.getX()) xCounter = 1;
-//
-//            int yCounter = 0;
-//            if (secondY > midPoint.getY()) yCounter = -1;
-//            else if (secondY < midPoint.getY()) yCounter = 1;
-//
-//            double difference = Math.abs(midPoint.getX()) - secondX/Math.abs(midPoint.getY() - secondY);
-//            double angle = 100/90 * 0.01 * midPoint.angle(secondX, secondY);
-//            if (difference < 1) {
-//                secondY += yCounter * (angle + 2);
-//                secondX += xCounter * (1 - angle + 2);
-//            } else if (difference > 1) {
-//                secondY += yCounter * (1 - angle + 2);
-//                secondX += xCounter * (angle + 2);
-//            }
-//            else {
-//                secondX += xCounter * 2;
-//                secondY += yCounter * 2;
-//            }
-//
-//            Circle test = new Circle();
-//                test.setRadius(1);
-//                test.setCenterX(secondX);
-//                test.setCenterY(secondY);
-//                controller.pane.getChildren().add(test);
-//            System.out.println(!polygon.contains(new Point2D(secondX, secondY)));
-//        }
-//
-//
 //        Point point1 = points.get(points.size() - 1);
 //        Point point2 = points.get(0);
 //
@@ -112,24 +68,24 @@ public class PolygonCreator {
             double speedX = Math.abs(x2 - midPointX)/distance;
             double speedY = Math.abs(y2 - midPointY)/distance;
             double movePointX = midPointX, movePointY = midPointY;
-            boolean check = false;
-            for(int j = 1; j < distance; j+=1){
-                if(midPointX > x2) movePointX -= speedX;
-                else movePointX += speedX;
 
-                if(midPointY > y2) movePointY -= speedY;
-                else movePointY += speedY;
+            int distanceCounter;
+            if((int)distance == distance) distanceCounter = (int)distance - 1;
+            else distanceCounter = (int)distance;
 
-                Circle test = new Circle();
-                test.setRadius(1);
-                test.setCenterX(movePointX);
-                test.setCenterY(movePointY);
-                controller.pane.getChildren().add(test);
-                if(!polygon.contains(movePointX, movePointY)) check = true;
-                else check = false;
-            }
+            if(midPointX > x2) movePointX -= speedX * distanceCounter;
+            else movePointX += speedX * distanceCounter;
 
-            points.get(num1).setAngleCorrect(check);
+            if(midPointY > y2) movePointY -= speedY * distanceCounter;
+            else movePointY += speedY * distanceCounter;
+
+            points.get(num1).setAngleCorrect(!polygon.contains(movePointX, movePointY));
+
+            /*Circle test = new Circle();
+            test.setRadius(1);
+            test.setCenterX(movePointX);
+            test.setCenterY(movePointY);
+            controller.pane.getChildren().add(test);*/
         }
     }
 
