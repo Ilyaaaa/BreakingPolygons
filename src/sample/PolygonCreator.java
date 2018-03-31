@@ -87,6 +87,57 @@ public class PolygonCreator {
             test.setCenterY(movePointY);
             controller.pane.getChildren().add(test);*/
         }
+
+        for (int i = 0; i < points.size(); i++){
+            System.out.println("1");
+            Point point = points.get(i);
+
+            Point nextPoint;
+            if (i == points.size() - i) nextPoint = points.get(0);
+            else nextPoint = points.get(i + 1);
+
+            if (!(point.getAngleCorrect() && !nextPoint.getAngleCorrect())) continue;
+
+            double vectorX = nextPoint.getX() - point.getX();
+            double vectorY = nextPoint.getY() - point.getY();
+
+            double c = (vectorX * point.getX()) + (vectorY * point.getY());
+
+            Point2D p1 = new Point2D(point.getX() + 1, ((-vectorX * point.getX() + 1) + c) / vectorY);
+            Point2D p2 = new Point2D(point.getX() - 1, ((-vectorX * point.getX() - 1) + c) / vectorY);
+            int counter;
+            double x;
+            if (polygon.contains(p1)){
+                counter = 1;
+                x = p1.getX();
+            } else if (polygon.contains(p2)){
+                counter = -1;
+                x = p2.getX();
+            } else {
+                System.out.println("Error");
+                break;
+            }
+
+            double y = ((-vectorX * x - 1) + c) / vectorY;
+            while (!polygon.contains(x, y)) {
+                x += counter;
+                y = ((-vectorX * x - 1) + c) / vectorY;
+
+                Circle test = new Circle();
+                test.setRadius(1);
+                test.setCenterX(x);
+                test.setCenterY(y);
+                test.setFill(Color.valueOf("#F41219"));
+                controller.pane.getChildren().add(test);
+                if(x < 0 || y < 0) {
+                    System.out.println("Error2");
+                    break;
+                }
+            }
+
+            point.setAngleCorrect(false);
+        }
+        System.out.println("Done");
     }
 
     private Polygon setPoint(Polygon polygon, double pointX, double pointY){
